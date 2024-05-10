@@ -12,7 +12,7 @@
     }
     {
       mode = ["n"];
-      key = "<S-q>";
+      key = "<C-q>";
       action = "<Cmd>BufferClose<CR>";
     }
   ];

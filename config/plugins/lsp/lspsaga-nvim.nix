@@ -41,7 +41,7 @@
         __raw = ''
           function()
             vim.bo.buflisted = false
-            vim.keymap.set('n', '<S-q>', ':clo<CR>', { buffer = true })
+            vim.keymap.set('n', '<C-q>', ':clo<CR>', { buffer = true })
             vim.keymap.set('n', '<C-n>', '<Nop>', { buffer = true })
             vim.keymap.set('n', '<C-p>', '<Nop>', { buffer = true })
           end
@@ -58,19 +58,19 @@
     require('lspsaga').setup({
       code_action = {
         keys = {
-          quit = '<S-q>',
+          quit = '<C-q>',
         }
       },
       diagnostic = {
         diagnostic_only_current = true,
         show_code_action = false,
           keys = {
-            quit = '<S-q>',
+            quit = '<C-q>',
           }
       },
       finder = {
         keys = {
-          quit = '<S-q>',
+          quit = '<C-q>',
         }
       },
       definition = {
@@ -78,18 +78,18 @@
         height = 0.95,
           keys = {
             edit = '<CR>',
-            quit = '<S-q>',
+            quit = '<C-q>',
           }
       },
       callhierarchy = {
         keys = {
           edit = '<CR>',
-          quit = '<S-q>',
+          quit = '<C-q>',
         }
       },
       rename = {
         keys = {
-          quit = '<S-q>',
+          quit = '<C-q>',
         }
       },
     })

@@ -29,10 +29,17 @@
         ...
       }: let
         nixvim' = nixvim.legacyPackages.${system};
-        nvim = nixvim'.makeNixvimWithModule {
+        nvim-nightly = nixvim'.makeNixvimWithModule {
           pkgs = import nixpkgs {
             inherit system;
             overlays = [inputs.neovim-nightly-overlay.overlay];
+          };
+          module = ./config;
+        };
+
+        nvim = nixvim'.makeNixvimWithModule {
+          pkgs = import nixpkgs {
+            inherit system;
           };
           module = ./config;
         };
@@ -40,6 +47,8 @@
         formatter = pkgs.alejandra;
 
         packages.default = nvim;
+        packages.nvim = nvim;
+        packages.nvim-nightly = nvim-nightly;
       };
     };
 }

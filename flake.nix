@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +30,10 @@
       }: let
         nixvim' = nixvim.legacyPackages.${system};
         nvim = nixvim'.makeNixvimWithModule {
-          inherit pkgs;
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [inputs.neovim-nightly-overlay.overlay];
+          };
           module = ./config;
         };
       in {

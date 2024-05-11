@@ -17,6 +17,7 @@
           function(args)
             local bufopts = { noremap = true, silent = true, buffer = args.buf }
             vim.keymap.set('n', 'gd', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
+            vim.keymap.set('n', '[LSP]d', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
             vim.keymap.set('n', 'gD', '<Cmd>Lspsaga peek_definition<CR>', bufopts)
             vim.keymap.set('n', '[e', '<Cmd>Lspsaga diagnostic_jump_next<CR>', bufopts)
             vim.keymap.set('n', ']e', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', bufopts)

@@ -4,6 +4,7 @@
   ];
 
   extraConfigLua = ''
+    vim.g.copilot_filetypes = { markdown = false }
     local keymap = vim.keymap.set
     -- https://github.com/orgs/community/discussions/29817#discussioncomment-4217615
     keymap(

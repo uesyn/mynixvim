@@ -77,21 +77,21 @@
       finder = {
         keys = {
           toggle_or_open = '<CR>',
-          quit = '<C-q>',
+          quit = {'<C-q>', '<C-t>', '<C-l>'},
         }
       },
       definition = {
         width = 1,
         height = 1,
-          keys = {
-            edit = '<CR>',
-            quit = {'<C-q>', '<C-t>'},
-          }
+        keys = {
+          edit = '<CR>',
+          quit = {'<C-q>', '<C-t>', '<C-l>'},
+        }
       },
       callhierarchy = {
         keys = {
           edit = '<CR>',
-          quit = '<C-q>',
+          quit = {'<C-q>', '<C-t>', '<C-l>'},
         }
       },
       rename = {

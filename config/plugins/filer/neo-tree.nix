@@ -68,6 +68,7 @@
           };
         };
         q = "close_window";
+        "<C-q>" = "close_window";
         r = "refresh";
         "?" = "show_help";
       };

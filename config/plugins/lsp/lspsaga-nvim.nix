@@ -55,8 +55,7 @@
   extraConfigLua = ''
     require('lspsaga').setup({
       lightbulb = {
-        virtual_text = false,
-        enable_in_insert = false,
+        enable = false,
       },
       outline = {
         keys = {

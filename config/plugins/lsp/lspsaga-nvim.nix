@@ -16,20 +16,21 @@
         __raw = ''
           function(args)
             local bufopts = { noremap = true, silent = true, buffer = args.buf }
-            vim.keymap.set('n', 'gd', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]d', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
-            vim.keymap.set('n', 'gD', '<Cmd>Lspsaga peek_definition<CR>', bufopts)
-            vim.keymap.set('n', '[e', '<Cmd>Lspsaga diagnostic_jump_next<CR>', bufopts)
-            vim.keymap.set('n', ']e', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]h', '<Cmd>Lspsaga hover_doc<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]t', '<Cmd>Lspsaga peek_type_definition<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]T', '<Cmd>Lspsaga goto_type_definition<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]r', '<Cmd>Lspsaga finder<CR>', bufopts)
+            vim.keymap.set('n', 'gd', '<Cmd>Lspsaga peek_definition<CR>', bufopts)
+            vim.keymap.set('n', 'gD', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
+            vim.keymap.set('n', '[d', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', bufopts)
+            vim.keymap.set('n', ']d', '<Cmd>Lspsaga diagnostic_jump_next<CR>', bufopts)
+            vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', bufopts)
+            vim.keymap.set('n', 'gt', '<Cmd>Lspsaga peek_type_definition<CR>', bufopts)
+            vim.keymap.set('n', 'gT', '<Cmd>Lspsaga goto_type_definition<CR>', bufopts)
+            vim.keymap.set('n', 'gr', '<Cmd>Lspsaga finder ref<CR>', bufopts)
+            vim.keymap.set('n', 'gi', '<Cmd>Lspsaga finder imp<CR>', bufopts)
+            vim.keymap.set('n', 'gI', '<Cmd>Lspsaga incoming_calls<CR>', bufopts)
+            vim.keymap.set('n', 'gO', '<Cmd>Lspsaga outgoing_calls<CR>', bufopts)
             vim.keymap.set('n', '[LSP]R', '<Cmd>Lspsaga rename<CR>', bufopts)
             vim.keymap.set('n', '[LSP]a', '<Cmd>Lspsaga code_action<CR>', bufopts)
             vim.keymap.set('n', '[LSP]f', function() vim.lsp.buf.format { async = true } end, bufopts)
-            vim.keymap.set('n', '[LSP]i', '<Cmd>Lspsaga incoming_calls<CR>', bufopts)
-            vim.keymap.set('n', '[LSP]o', '<Cmd>Lspsaga outgoing_calls<CR>', bufopts)
+            vim.keymap.set('n', '[LSP]o', '<Cmd>Lspsaga outline<CR>', bufopts)
           end
         '';
       };
@@ -52,34 +53,40 @@
   ];
 
   extraConfigLua = ''
-    vim.diagnostic.config({
-      virtual_text = false
-    })
-
     require('lspsaga').setup({
+      lightbulb = {
+        virtual_text = false,
+        enable_in_insert = false,
+      },
+      outline = {
+        keys = {
+          toggle_or_jump = '<CR>',
+          quit = '<C-q>',
+        },
+      },
       code_action = {
         keys = {
           quit = '<C-q>',
         }
       },
       diagnostic = {
-        diagnostic_only_current = true,
         show_code_action = false,
-          keys = {
-            quit = '<C-q>',
-          }
-      },
-      finder = {
         keys = {
           quit = '<C-q>',
         }
       },
+      finder = {
+        keys = {
+          toggle_or_open = '<CR>',
+          quit = '<C-q>',
+        }
+      },
       definition = {
-        width = 0.95,
-        height = 0.95,
+        width = 1,
+        height = 1,
           keys = {
             edit = '<CR>',
-            quit = '<C-q>',
+            quit = {'<C-q>', '<C-t>'},
           }
       },
       callhierarchy = {

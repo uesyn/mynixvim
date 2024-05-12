@@ -20,7 +20,6 @@
             vim.keymap.set('n', 'gD', '<Cmd>Lspsaga goto_definition<CR>', bufopts)
             vim.keymap.set('n', '[d', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', bufopts)
             vim.keymap.set('n', ']d', '<Cmd>Lspsaga diagnostic_jump_next<CR>', bufopts)
-            vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', bufopts)
             vim.keymap.set('n', 'gt', '<Cmd>Lspsaga peek_type_definition<CR>', bufopts)
             vim.keymap.set('n', 'gT', '<Cmd>Lspsaga goto_type_definition<CR>', bufopts)
             vim.keymap.set('n', 'gr', '<Cmd>Lspsaga finder ref<CR>', bufopts)

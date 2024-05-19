@@ -34,6 +34,21 @@
                 vim.lsp.inlay_hint.enable(true)
               end
             end
+
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
+            vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
+            vim.keymap.set('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', bufopts)
+            vim.keymap.set('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', bufopts)
+            vim.keymap.set('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', bufopts)
+            vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
+            vim.keymap.set('n', 'gt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', bufopts)
+            vim.keymap.set('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', bufopts)
+            vim.keymap.set('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
+            vim.keymap.set('n', 'gI', '<Cmd>lua vim.lsp.buf.incoming_calls()<CR>', bufopts)
+            vim.keymap.set('n', 'gO', '<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>', bufopts)
+            vim.keymap.set('n', '[LSP]R', '<Cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+            vim.keymap.set('n', '[LSP]a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+            vim.keymap.set('n', '[LSP]f', function() vim.lsp.buf.format { async = true } end, bufopts)
           end
         '';
       };

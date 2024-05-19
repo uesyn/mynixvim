@@ -29,11 +29,6 @@
 
             local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
-            if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
-              if not vim.lsp.inlay_hint.is_enabled() then
-                vim.lsp.inlay_hint.enable(true)
-              end
-            end
 
             local bufopts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
@@ -49,6 +44,7 @@
             vim.keymap.set('n', '[LSP]R', '<Cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
             vim.keymap.set('n', '[LSP]a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
             vim.keymap.set('n', '[LSP]f', function() vim.lsp.buf.format { async = true } end, bufopts)
+            vim.keymap.set('n', '[LSP]i', '<Cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>', bufopts)
           end
         '';
       };

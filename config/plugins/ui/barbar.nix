@@ -18,4 +18,5 @@
   ];
 
   plugins.barbar.enable = true;
+  plugins.barbar.animation = false;
 }

@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  extraPackages = with pkgs; [
-    gopls
-    nixd
-    nodePackages.typescript-language-server
-    nodePackages.bash-language-server
+  extraPackages = [
+    pkgs.gopls
+    pkgs.nil
+    pkgs.nodePackages.typescript-language-server
+    pkgs.nodePackages.bash-language-server
   ];
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -131,8 +131,9 @@
       lspconfig.pyright.setup {}
     end
 
-    if vim.fn.executable("nixd") == 1 then
-      lspconfig.nixd.setup {}
+    -- nix language server
+    if vim.fn.executable("nil") == 1 then
+      lspconfig.nil_ls.setup {}
     end
   '';
 }

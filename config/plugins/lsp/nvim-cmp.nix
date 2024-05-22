@@ -2,6 +2,7 @@
   extraPlugins = with pkgs.vimPlugins; [
     nvim-cmp
     cmp-nvim-lsp
+    cmp-nvim-lsp-signature-help
     nvim-snippy
     cmp-snippy
   ];
@@ -26,10 +27,11 @@
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
       }),
-      sources = cmp.config.sources({
+      sources = {
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'snippy' },
-      }),
+      },
       experimental = {
         ghost_text = true,
       }
